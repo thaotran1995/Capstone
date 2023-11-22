@@ -46,6 +46,12 @@ custom:
       - name: UpdateBlogRequest
         contentType: application/json
         schema: ${file(models/update-blog-model.json)}
+      - name: DeleteBlogRequest
+        contentType: application/json
+        schema: ${file(models/delete-blog-model.json)}
+      - name: UploadImageRequest
+        contentType: application/json
+        schema: ${file(models/upload-blog-model.json)}
 
 functions:
 
@@ -121,9 +127,11 @@ functions:
           path: blogs
           cors: true
           authorizer: Auth
-          request:
-            schemas:
-              application/json: ${file(models/create-blog-model.json)}
+          documentation:
+            summary: CreateBlog
+            description: CreateBlog
+            requestModels:
+              'application/json': CreateBlogRequest
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -146,9 +154,11 @@ functions:
           path: blogs/{blogId}
           cors: true
           authorizer: Auth
-          request:
-            schemas:
-              application/json: ${file(models/update-blog-model.json)}
+          documentation:
+            summary: UpdateBlog
+            description: UpdateBlog
+            requestModels:
+              'application/json': UpdateBlogRequest
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -172,6 +182,11 @@ functions:
           path: blogs/{blogId}
           cors: true
           authorizer: Auth
+          documentation:
+            summary: DeleteBlog
+            description: DeleteBlog
+            requestModels:
+              'application/json': DeleteBlogRequest
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -199,6 +214,11 @@ functions:
           path: blogs/{blogId}/attachment
           cors: true
           authorizer: Auth
+          documentation:
+            summary: UploadImage
+            description: UploadImage
+            requestModels:
+              'application/json': UploadImageRequest
     iamRoleStatements:
       - Effect: Allow
         Action:

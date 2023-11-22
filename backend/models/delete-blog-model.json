@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "group",
+  "type": "object",
+  "required": ["pathParameters"],
+  "properties": {
+    "pathParameters": {
+      "type": "object",
+      "required": ["blogId"],
+      "properties": {
+        "blogId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
