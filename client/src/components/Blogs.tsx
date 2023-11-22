@@ -15,7 +15,7 @@ import {
 } from 'semantic-ui-react'
 import moment from "moment"
 
-import { createBlog, deleteBlog, getBlogs, patchBlog } from '../api/todos-api'
+import { createBlog, deleteBlog, getBlogs, patchBlog } from '../api/blogs-api'
 import Auth from '../auth/Auth'
 import { Blog } from '../types/Blog'
 import { Link } from 'react-router-dom'

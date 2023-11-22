@@ -10,4 +10,4 @@ before_install: cd backend
 
 script:
   - serverless config credentials --provider aws --key "$AWS_ACCESS_KEY_ID" --secret "$AWS_SECRET_KEY" --profile "$AWS_PROFILE"
-  - serverless deploy --aws-profile "$AWS_PROFILE"
+  - serverless deploy

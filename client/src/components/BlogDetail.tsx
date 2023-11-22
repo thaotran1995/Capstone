@@ -5,7 +5,7 @@ import Auth from '../auth/Auth'
 import { Blog } from '../types/Blog'
 import { Button, Form, Grid, Header, Icon, Image, Input, Loader, Modal } from 'semantic-ui-react'
 import axios from 'axios'
-import { deleteBlog, getBlog, getUploadUrl, patchBlog, uploadFile } from '../api/todos-api'
+import { deleteBlog, getBlog, getUploadUrl, patchBlog, uploadFile } from '../api/blogs-api'
 import moment from 'moment'
 import { UpdateBlogRequest } from '../types/UpdateBlogRequest'
 import { UploadImage } from './UploadImage'
@@ -28,6 +28,7 @@ const BlogDetail: React.FC<BlogProps> = ({auth, match}) => {
   const history = useHistory();
   const [blog, setBlog] = useState<Blog>();
   const [open, setOpen] = useState<boolean>(false);
+  const [openUpload, setOpenUpload] = useState(false);
   const [newBlog, setNewBlog] = useState<UpdateBlogRequest>({
     title: "",
     content: ""
@@ -149,9 +150,9 @@ const BlogDetail: React.FC<BlogProps> = ({auth, match}) => {
               >
                 <Icon name="delete" />
               </Button>
-              <Modal onOpen={() => setOpen(true)}
-                     onClose={() => setOpen(false)}
-                     open={open}
+              <Modal onOpen={() => setOpenUpload(true)}
+                     onClose={() => setOpenUpload(false)}
+                     open={openUpload}
                      trigger={<Button>Upload</Button>}
               >
                 <Modal.Header>Upload new file</Modal.Header>
@@ -169,8 +170,8 @@ const BlogDetail: React.FC<BlogProps> = ({auth, match}) => {
                   </Form>
                 </Modal.Content>
                 <Modal.Actions>
-                  <Button color="red" onClick={() => setOpen(false)}>Cancel</Button>
-                  <Button color="green" onClick={handleUploadFile}>Post</Button>
+                  <Button color="red" onClick={() => setOpenUpload(false)}>Cancel</Button>
+                  <Button color="green" onClick={handleUploadFile}>Upload</Button>
                 </Modal.Actions>
               </Modal>
             </Grid.Column>
