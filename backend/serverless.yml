@@ -1,4 +1,4 @@
-# TODO: Change the name of the org 
+# TODO: Change the name of the org
 org: thaotran1995
 app: serverless-blog-app
 service: serverless-blog-app
@@ -12,7 +12,6 @@ plugins:
 provider:
   name: aws
   runtime: nodejs14.x
-  lambdaHashingVersion: '20201221'
 
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
@@ -21,7 +20,7 @@ provider:
     lambda: true
     apiGateway: true
 
-  # Use these variables in the functions and resouorces section below. For example, 
+  # Use these variables in the functions and resouorces section below. For example,
   # ${self:provider.environment.ATTACHMENT_S3_BUCKET}
   environment:
     BLOGS_TABLE: Blogs-${self:provider.stage}
@@ -62,7 +61,7 @@ functions:
   Auth:
     handler: src/lambda/auth/auth0Authorizer.handler
 
-  # TODO: Configure this function - 
+  # TODO: Configure this function -
   # Provide iamRoleStatements property for performing Actions on DynamoDB
   GetBlogs:
     handler: src/lambda/http/blog/getBlogs.handler
@@ -119,10 +118,10 @@ functions:
         Resource:
           - "*"
 
-  # TODO: Configure this function - 
-  # Provide iamRoleStatements property. Decide the Actions and AWS Resource. 
+  # TODO: Configure this function -
+  # Provide iamRoleStatements property. Decide the Actions and AWS Resource.
   # To refer to an AWS resource defined in the "Resources" section, you can use "Resource: !GetAtt <resource-name>.Arn"
-  # To validate incoming HTTP requests, we have provided the request schemas in function definition below. 
+  # To validate incoming HTTP requests, we have provided the request schemas in function definition below.
   CreateBlog:
     handler: src/lambda/http/blog/createBlog.handler
     events:
@@ -207,7 +206,7 @@ functions:
       - http:
           method: post
           path: blogs/{blogId}/attachment
-          cors: true,
+          cors: true
           authorizer: Auth
     iamRoleStatements:
       - Effect: Allow
@@ -230,7 +229,7 @@ resources:
   Resources:
     # Add necessary AWS resources. You will need at least the following AWS resources
     # TODO: Fill the properties
-    # Feel free to change the names as you like. 
+    # Feel free to change the names as you like.
     GatewayResponseDefault4XX:
       Type: AWS::ApiGateway::GatewayResponse
       Properties:
